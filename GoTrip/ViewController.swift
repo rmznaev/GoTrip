@@ -9,13 +9,30 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let locations = [
+        Location(title: "Zaqatala", subtitle: "Best place to go in Azerbaijan! eniaflknca a nalncsas ca lncakcn ;m slma m"),
+        Location(title: "Qax",subtitle: "Best place to visit in winter!"),
+        Location(title: "Baku", subtitle: "The capital of Azerbaijan!")
+    ]
+    
+    let tableIdentifier = "tableIdentifier"
     let searchBar = UISearchBar()
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(LocationCell.self, forCellReuseIdentifier: tableIdentifier)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return tableView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.configureUI()
+        configureUI()
     }
 
     func configureUI() {
@@ -41,6 +58,15 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         
         showSearchBarButton(shouldShow: true)
+        
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     @objc
@@ -63,6 +89,23 @@ class ViewController: UIViewController {
         showSearchBarButton(shouldShow: !shouldShow)
         searchBar.showsCancelButton = shouldShow
         navigationItem.titleView = shouldShow ? searchBar : nil
+    }
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locations.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: tableIdentifier, for: indexPath) as! LocationCell
+        cell.location = locations[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
 }
 
