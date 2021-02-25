@@ -9,13 +9,13 @@ import UIKit
 
 class LocationCell: UITableViewCell {
     
-    var location: Location? {
+    var location: HolidayDetail? {
         didSet {
-            if let title = location?.title {
+            if let title = location?.name {
                 self.locationTitle.text = title
             }
             
-            if let subtitle = location?.subtitle {
+            if let subtitle = location?.date.iso {
                 self.locationSubtitle.text = subtitle
             }
         }

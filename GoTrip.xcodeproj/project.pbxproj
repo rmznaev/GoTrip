@@ -14,6 +14,7 @@
 		C4675D2F25E3A9BB0020416E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4675D2D25E3A9BB0020416E /* LaunchScreen.storyboard */; };
 		C4675D3D25E3DC910020416E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4675D3C25E3DC910020416E /* Location.swift */; };
 		C4675D4025E3DCC80020416E /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4675D3F25E3DCC80020416E /* LocationCell.swift */; };
+		C4B8397725E42D7E004A680A /* HolidayRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B8397625E42D7E004A680A /* HolidayRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		C4675D3025E3A9BB0020416E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4675D3C25E3DC910020416E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C4675D3F25E3DCC80020416E /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		C4B8397625E42D7E004A680A /* HolidayRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +64,9 @@
 				C4675D2425E3A9B90020416E /* SceneDelegate.swift */,
 				C4675D2625E3A9B90020416E /* ViewController.swift */,
 				C4675D3F25E3DCC80020416E /* LocationCell.swift */,
-				C4675D2B25E3A9BB0020416E /* Assets.xcassets */,
+				C4B8397625E42D7E004A680A /* HolidayRequest.swift */,
 				C4675D3C25E3DC910020416E /* Location.swift */,
+				C4675D2B25E3A9BB0020416E /* Assets.xcassets */,
 				C4675D2D25E3A9BB0020416E /* LaunchScreen.storyboard */,
 				C4675D3025E3A9BB0020416E /* Info.plist */,
 			);
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4B8397725E42D7E004A680A /* HolidayRequest.swift in Sources */,
 				C4675D2725E3A9B90020416E /* ViewController.swift in Sources */,
 				C4675D4025E3DCC80020416E /* LocationCell.swift in Sources */,
 				C4675D2325E3A9B90020416E /* AppDelegate.swift in Sources */,

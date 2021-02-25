@@ -9,11 +9,20 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let locations = [
-        Location(title: "Zaqatala", subtitle: "Best place to go in Azerbaijan! eniaflknca a nalncsas ca lncakcn ;m slma m"),
-        Location(title: "Qax",subtitle: "Best place to visit in winter!"),
-        Location(title: "Baku", subtitle: "The capital of Azerbaijan!")
-    ]
+//    let locations = [
+//        Location(title: "Zaqatala", subtitle: "Best place to go in Azerbaijan! eniaflknca a nalncsas ca lncakcn ;m slma m"),
+//        Location(title: "Qax",subtitle: "Best place to visit in winter!"),
+//        Location(title: "Baku", subtitle: "The capital of Azerbaijan!")
+//    ]
+    
+    var listOfHolidays = [HolidayDetail]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.navigationItem.title = "\(self.listOfHolidays.count) Holidays found"
+            }
+        }
+    }
     
     let tableIdentifier = "tableIdentifier"
     let searchBar = UISearchBar()
@@ -94,12 +103,12 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        return listOfHolidays.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableIdentifier, for: indexPath) as! LocationCell
-        cell.location = locations[indexPath.row]
+        cell.location = listOfHolidays[indexPath.row]
         
         return cell
     }
@@ -110,6 +119,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchBarText = searchBar.text else { return }
+        
+        let holidayRequest =  HolidayRequest(countryCode: searchBarText)
+        holidayRequest.getHolidays { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let holidays):
+                self?.listOfHolidays = holidays
+            }
+        }
+    }
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         print("Search bar did begin editing..")
     }
